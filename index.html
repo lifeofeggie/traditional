@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>전통문화포털 - 홈</title>
+    <style>
+      @import url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Maruburi-Regular.woff2");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        font-family: "Maruburi-Regular", sans-serif;
+        scroll-behavior: smooth;
+        transition: background 1s ease-in-out;
+      }
+
+      body {
+        background-color: #fff4ea;
+        color: #333;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 1rem 5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+      }
+
+      .logo img {
+        width: 100px;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+      }
+
+      nav ul li {
+        position: relative;
+      }
+
+      nav ul li > a {
+        cursor: pointer;
+        text-decoration: none;
+        color: #333;
+        padding: 0.5rem;
+        display: inline-block;
+      }
+
+      /* 드롭다운 메뉴 스타일 */
+      /* nav ul li > a는 그대로 두고 */
+
+      nav ul li .dropdown {
+        display: none;
+        position: absolute;
+        top: 3.5rem;
+        right: 0;
+        width: 70vw;
+        background-color: #ffffffee;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        border-top: 3px solid #fbc8b9;
+        z-index: 99;
+        padding: 2rem 5rem;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 0 0 20px 20px;
+      }
+
+      nav ul li:hover .dropdown {
+        display: flex;
+      }
+
+      nav ul li .dropdown {
+        display: none;
+        /* 기존 스타일 유지 */
+      }
+
+      .dropdown-column {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        min-width: 120px;
+      }
+
+      .dropdown-column a {
+        background-color: #fff;
+        border-radius: 12px;
+        padding: 0.7rem 1rem;
+        text-decoration: none;
+        color: #333;
+        text-align: center;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      }
+
+      .dropdown-column a:hover {
+        background-color: #fbc8b9;
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      #menuToggleBtn img {
+        width: 40px;
+        height: auto;
+        /* 비율 유지 */
+        cursor: pointer;
+        /* 클릭 가능한 느낌 */
+      }
+
+      .section {
+        position: relative;
+        height: 1575px;
+        padding: 5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 0;
+        overflow: hidden;
+      }
+
+      .section h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+
+      #topBtn {
+        position: fixed;
+        right: 2rem;
+        bottom: 2rem;
+        background-color: #333;
+        color: white;
+        padding: 0.8rem 1rem;
+        border-radius: 50%;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+
+      #side-nav {
+        width: 50px;
+        position: fixed;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        z-index: 2;
+      }
+
+      #side-nav img:nth-child(1):hover {
+        width: 40px;
+      }
+
+      #side-nav img:nth-child(2):hover {
+        width: 40px;
+      }
+
+      #side-nav img:nth-child(3):hover {
+        width: 40px;
+      }
+
+      #side-nav img:nth-child(4):hover {
+        width: 40px;
+      }
+
+      #side-nav button {
+        border: none;
+        color: #555;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+        width: 50%;
+        text-align: center;
+      }
+
+      #side-nav img {
+        width: 30px;
+      }
+
+      #gomrangyeeBtn {
+        width: 70px;
+        position: fixed;
+        right: 1.2rem;
+        bottom: 6rem;
+        color: white;
+        padding: 0.8rem 1rem;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        background: none;
+      }
+
+      #gomrangyeeBtn img {
+        width: 100%;
+        height: 100%;
+      }
+
+      #hanbando {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 700px;
+        z-index: 2;
+        margin-top: 45px;
+        opacity: 1;
+      }
+
+      .infoPanel {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 1000px;
+        height: auto;
+        max-height: 80vh;
+        background-color: #fff;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        padding: 2rem;
+        border-radius: 1.5rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        overflow-y: auto;
+      }
+
+      .infoPanel.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .info-content {
+        position: relative;
+        height: 100%;
+      }
+
+      #infoPanel h2 {
+        margin-top: 0;
+        font-family: "GabiaMaeumgyeol", sans-serif;
+      }
+
+      #infoPanel p {
+        font-family: "Nanum Gothic", sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-top: 1rem;
+      }
+
+      .closePanel {
+        position: absolute;
+        top: 0rem;
+        right: 0rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .closePanel img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1575px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.6;
+        /* 여기서 조절 */
+        z-index: -1;
+      }
+
+      /* 각 section 별 배경 이미지 지정 */
+      #spring::before {
+        background-image: url("./1x/spring.png");
+      }
+
+      #summer::before {
+        background-image: url("./1x/summer.png");
+      }
+
+      #autumn::before {
+        background-image: url("./1x/autumn.png");
+      }
+
+      #winter::before {
+        background-image: url("./1x/winter.png");
+      }
+
+      #mapContainer {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 800px;
+        z-index: 3;
+        pointer-events: none;
+        /* 클릭 방지용 */
+      }
+
+      .pin-group {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .pin-group .clickable {
+        position: absolute;
+        pointer-events: auto;
+        /* 클릭 가능하도록 복원 */
+        cursor: pointer;
+      }
+
+      .pin-group img {
+        width: 100px;
+      }
+
+      .pin-group:not(.active) {
+        display: none;
+      }
+
+  /* 벚꽃나무 이미지 애니메이션 */
+.pin-group img {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+#pins-spring img:hover {
+  filter: drop-shadow(0 4px 10px rgba(255, 182, 193, 0.6));
+}
+
+#pins-summer img:hover {
+  filter: drop-shadow(0 4px 10px rgba(107, 186, 250, 0.6));
+}
+
+.pin-group {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+}
+
+.pin-group.active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+/* 기본 위치 지정 (예: 가운데 아래쪽에 배치) */
+#pins-summer img {
+  position: fixed;
+  transform: translateX(-50%);
+  width: 80px;
+}
+/* 기본 위치 지정 (예: 가운데 아래쪽에 배치) */
+#pins-autumn img {
+  position: fixed;
+  transform: translateX(-50%);
+  width: 80px;
+}
+
+
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <div class="logo">
+        <a href="./웹사이트_레이아웃_메인.html"
+          ><img src="./1x/Asset 2.png" alt=""
+        /></a>
+      </div>
+      <!-- <ul>
+        <li class="main-menu">
+          <a id="menuToggleBtn"><img src="./1x/menu_default.png" alt="" /></a>
+          <div class="dropdown">
+            <div class="dropdown-column">
+              <strong>사이트소개</strong>
+              <a href="greeting.html">인사말</a>
+              <a href="greeting.html#gigwansogae">기관소개</a>
+              <a href="greeting.html#value">핵심가치</a>
+            </div>
+            <div class="dropdown-column">
+              <strong>한문화</strong>
+              <a href="hanCulture.html">한지</a>
+              <a href="hanCulture.html#koreanFood">한식</a>
+              <a href="hanCulture.html#hanbok">한복</a>
+              <a href="hanCulture.html#traditionalPattern">전통문양</a>
+            </div>
+            <div class="dropdown-column">
+              <strong>전통백과</strong>
+              <a href="traditionaldic.html#koreanoldhouse">한국전통옛집</a>
+              <a href="traditionaldic.html#100thsymbol">100대 민족문화상징</a>
+              <a href="traditionaldic.html#culturepeople">한국의 문화인물</a>
+              <a href="traditionaldic.html#nationalICH">국가무형유산</a>
+              <a href="traditionaldic.html#games">전통놀이</a>
+            </div>
+            <div class="dropdown-column">
+              <strong>소식</strong>
+              <a href="#">문화소식</a>
+              <a href="#">행사안내</a>
+              <a href="#">전통기업 톺아보기</a>
+            </div>
+          </div>
+        </li>
+      </ul> -->
+    </nav>
+
+    <nav id="side-nav">
+      <div onclick="scrollToSection(0)">
+        <img src="./1x/1x/1x/sakura.png" alt="" />
+      </div>
+      <div onclick="scrollToSection(1)">
+        <img src="./1x/1x/1x/wave.png" alt="" />
+      </div>
+      <div onclick="scrollToSection(2)">
+        <img src="./1x/1x/1x/leaves.png" alt="" />
+      </div>
+      <div onclick="scrollToSection(3)">
+        <img src="./1x/1x/1x/snowflakes.png" alt="" />
+      </div>
+    </nav>
+
+    <!-- 지도 및 핀들 고정 영역 -->
+    <div id="mapContainer">
+      <img src="./1x/한반도_1.png" alt="" id="hanbando" />
+
+      <!-- 봄 -->
+      <div class="pin-group" id="pins-spring">
+        <div
+          class="clickable"
+          data-target="info-seoul"
+          style="left: 35%; bottom: 170px"
+        >
+          <img src="./1x/cherrytree.png" alt="서울_벚꽃" />
+        </div>
+        <div
+          class="clickable"
+          data-target="info-gyeonggi"
+          style="left: 40%; bottom: 240px"
+        >
+          <img src="./1x/cherrytree.png" alt="경기_벚꽃" />
+        </div>
+        <div
+          class="clickable"
+          data-target="info-incheon"
+          style="left: 22%; bottom: 190px"
+        >
+          <img src="./1x/cherrytree.png" alt="인천_벚꽃" />
+        </div>
+        <div
+          class="clickable"
+          data-target="info-gangwon"
+          style="left: 65%; bottom: 190px"
+        >
+          <img src="./1x/cherrytree.png" alt="강원_벚꽃" />
+        </div>
+        <div
+          class="clickable"
+          data-target="info-jecheon"
+          style="left: 50%; bottom: 80px"
+        >
+          <img src="./1x/cherrytree.png" alt="충북제천_벚꽃" />
+        </div>
+
+                <div
+          class="clickable"
+          data-target="info-asan"
+          style="left: 25%; bottom: 70px"
+        >
+          <img src="./1x/cherrytree.png" alt="충남아산_벚꽃" />
+        </div>
+
+                        <div
+          class="clickable"
+          data-target="info-jeonju"
+          style="left: 25%; bottom: -100px"
+        >
+          <img src="./1x/cherrytree.png" alt="전주_벚꽃" />
+        </div>
+                      <div
+          class="clickable"
+          data-target="info-seomjingang"
+          style="left: 40%; bottom: -230px"
+        >
+          <img src="./1x/cherrytree.png" alt="섬진강_벚꽃" />
+        </div>
+                      <div
+          class="clickable"
+          data-target="info-bomunho"
+          style="left: 70%; bottom: -80px"
+        >
+          <img src="./1x/cherrytree.png" alt="보문호_벚꽃" />
+        </div>
+        <div
+          class="clickable"
+          data-target="info-jinhae"
+          style="left: 58%; bottom: -200px"
+        >
+          <img src="./1x/cherrytree.png" alt="진해_벚꽃" />
+        </div>
+                <div
+          class="clickable"
+          data-target="info-jeju"
+          style="left: 20%; bottom: -420px"
+        >
+          <img src="./1x/cherrytree.png" alt="제주_벚꽃" />
+        </div>
+        
+
+      </div>
+      </div>
+
+
+      <!-- infoPanel - 서울 벚꽃 -->
+      <div class="infoPanel" id="info-seoul">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>여의도 윤중로</h2>
+          <p>한강 따라 약 1.7km 벚꽃길 / 매년 ‘봄꽃축제’ 열림, 야경까지 예쁨</p>
+          <img
+            src="https://hangang.seoul.go.kr/www/file/down.do?fkey=07dfc20d0889cdaa726fccadefccb13d73847d918171808906bfc90f47fe439a9e26ae6571ed538b9dbe1b5467831702f6d90da56c83e6343dabcae3ec181981"
+            alt="서울 벚꽃"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+      <!-- 인포 경기 -->
+      <div class="infoPanel" id="info-gyeonggi">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>경기도청 앞 벚꽃길 (수원)</h2>
+          <p>클래식한 벚꽃길 / 수원화성과 가까워 역사탐방도 가능</p>
+          <img
+            src="https://gnews.gg.go.kr/OP_UPDATA/UP_DATA/_FILEZ/202504/20250407101910917768022.jpg"
+            alt="경기 벚꽃"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+      <!-- 인포 인천 -->
+      <div class="infoPanel" id="info-incheon">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>인천대공원</h2>
+          <p>대형 공원 안 벚꽃길과 호수, 자전거도로 / 가족 단위 나들이 추천</p>
+          <img
+            src="https://mblogthumb-phinf.pstatic.net/MjAyMzA0MDVfMjE4/MDAxNjgwNjgxOTUwMTIx.eGRNL6TDt2IJCGMLocyr-TeKwe7LkapYKicshFjrUZMg.z8iLTCkkpiaUhd5oTbJ9lUvOC5FWmoRd7hc-9CPOtUog.PNG.discoverincheon/SE-b46ca500-46b7-4ba6-a1a9-2e2c2bc172f5.png?type=w800"
+            alt="인천 벚꽃"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+
+      <!-- 인포 강원 -->
+      <div class="infoPanel" id="info-gangwon">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>경포대 벚꽃길 (강릉)</h2>
+          <p>
+            동해 바다와 어우러진 벚꽃 / 바다와 꽃길이 함께하는 드라이브 명소
+          </p>
+          <img
+            src="https://lh3.googleusercontent.com/proxy/yyOjPivgUlsjKmmuD4enlC7uKpwP05Zl0TZow4T8zae6Z5CBdTjq6gs9_xm1G4ErwQSaQuYwCUq6ttAzbMekgZeJPTwcEWojWoSMPAzqFRaNLydhppeXIj_g-Z56rMfUAEeBRfvbxx2bX1M"
+            alt="강릉 벚꽃"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+
+            <!-- 인포 제천 -->
+      <div class="infoPanel" id="info-jecheon">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>청풍호 벚꽃길 (제천)</h2>
+          <p>
+           호숫가 따라 이어지는 드라이브 명소 / 풍경 사진 명소로도 인기
+          </p>
+          <img
+            src="https://cdn.danbinews.com/news/photo/201104/657_1589_66.jpg"
+            alt="제천 벚꽃"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+
+                  <!-- 인포 아산 -->
+      <div class="infoPanel" id="info-asan">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>온양온천역 벚꽃길 (아산)</h2>
+          <p>
+           온천 관광지와 연계된 벚꽃 명소 / 기차역 인근이라 접근성 좋음
+          </p>
+          <img
+            src="https://cdn.newstnt.com/news/photo/202403/358191_370863_5052.jpg"
+            alt="아산 벚꽃"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+
+                        <!-- 인포 전주 -->
+      <div class="infoPanel" id="info-jeonju">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>전주 덕진공원</h2>
+          <p>
+           연못과 정자 배경으로 벚꽃 감상 / 전주한옥마을과 연계하면 딱 좋아
+          </p>
+          <img
+            src="https://cdn.newstnt.com/news/photo/202403/358191_370863_5052.jpg"
+            alt="아산 벚꽃"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+
+                              <!-- 인포 섬진강 -->
+      <div class="infoPanel" id="info-seomjingang">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>섬진강 벚꽃길 (구례)</h2>
+          <p>
+           섬진강 따라 펼쳐진 10리 벚꽃길 / 드라이브/자전거 여행지로 유명
+          </p>
+          <img
+            src="https://cdn.visitkorea.or.kr/img/call?cmd=VIEW&id=6b3663dd-4124-4263-8f77-708737358ffa"
+            alt="섬진강 벚꽃"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+           <div class="infoPanel" id="info-bomunho">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>보문호 벚꽃길 (경주)</h2>
+          <p>
+           호수 둘레길+벚꽃+유적지 조합 / 불국사, 첨성대와 연계된 봄 여행지
+          </p>
+          <img
+            src="https://m.imaeil.com/photos/2013/03/26/2013032609282123345_l.jpg"
+            alt="보문호 벚꽃"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+                 <div class="infoPanel" id="info-jinhae">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>진해 여좌천 & 경화역</h2>
+          <p>
+           전국 최대 벚꽃 축제 ‘진해군항제’의 중심 / 로망스다리와 철길 벚꽃은 전국 최고급
+          </p>
+          <img
+            src="https://jgfestival.or.kr/theme/g24/css/images/mainv01.jpg"
+            alt="진해 벚꽃"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+                       <div class="infoPanel" id="info-jeju">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>제주시 전농로</h2>
+          <p>
+           국내 자생 왕벚꽃이 피는 거리 / 다른 지역보다 일찍(3월 중순) 개화
+          </p>
+          <img
+            src="https://cdn.jejudomin.co.kr/news/photo/202303/215634_214023_5419.jpg"
+            alt="제주 벚꽃"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+
+      <!-- 여름 -->
+<div class="pin-group" id="pins-summer">
+          <div
+          class="clickable"
+          data-target="info-gangneung"
+          style="right: 40%; top: 200px"
+        >
+          <img src="./1x/beach.png" alt="">
+        </div>
+
+          <div
+          class="clickable"
+          data-target="info-sokcho"
+          style="right: 43%; top: 150px"
+        >
+          <img src="./1x/beach.png" alt="">
+        </div>
+
+          <div
+          class="clickable"
+          data-target="info-haeundae"
+          style="right: 41%; bottom: 300px"
+        >
+          <img src="./1x/beach.png" alt="">
+        </div>
+
+                  <div
+          class="clickable"
+          data-target="info-wolpo"
+          style="right: 40%; bottom: 500px"
+        >
+          <img src="./1x/beach.png" alt="">
+        </div>
+
+                          <div
+          class="clickable"
+          data-target="info-gyeokpo"
+          style="left: 40%; bottom: 400px"
+        >
+          <img src="./1x/beach.png" alt="">
+        </div>
+
+                                  <div
+          class="clickable"
+          data-target="info-blacksand"
+          style="left: 45%; bottom: 240px"
+        >
+          <img src="./1x/beach.png" alt="">
+        </div>
+
+                                          <div
+          class="clickable"
+          data-target="info-daecheon"
+          style="left: 40%; top: 380px"
+        >
+          <img src="./1x/beach.png" alt="">
+        </div>
+                                                  <div
+          class="clickable"
+          data-target="info-kkotji"
+          style="left: 37%; top: 320px"
+        >
+          <img src="./1x/beach.png" alt="">
+        </div>
+                                                          <div
+          class="clickable"
+          data-target="info-hyeopjae"
+          style="left: 40%; bottom: 120px"
+        >
+          <img src="./1x/beach.png" alt="">
+        </div>
+
+      </div>
+
+      <!-- 인포 경포해변 -->
+      <div class="infoPanel" id="info-gangneung">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>경포해변 (강릉)</h2>
+          <p>
+           백사장 길고, 밤엔 경포호 야경까지! / 근처에 안목 커피거리, 초당두부 거리 있음
+          </p>
+          <img
+            src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/60/e1/09/gyeongpo-beach-in-february.jpg?w=900&h=500&s=1"
+            alt="경포해변"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+           <!-- 인포 속초해변 -->
+      <div class="infoPanel" id="info-sokcho">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>속초해수욕장</h2>
+          <p>
+           시내 접근성 최고, 설악산+바다 여행 동시 가능 / 야경과 회센터도 유명
+          </p>
+          <img
+            src="https://www.gangwon.to/upload/board/BDMAIN03/997b0db6-1ba2-49ff-8eee-486983d739cf.jpg"
+            alt="속초해수욕장"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+                 <!-- 인포 속초해변 -->
+      <div class="infoPanel" id="info-haeundae">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>해운대해수욕장 (부산)</h2>
+          <p>
+           전국 No.1 해수욕장, 도심형 바다 / 광안대교 야경, 동백섬, 마린시티까지 올인원
+          </p>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/a/a2/Haeundae_Beach_in_Busan.jpg"
+            alt="해운대해수욕장"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+      <!-- 인포 월포해변 -->
+      <div class="infoPanel" id="info-wolpo">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>월포해수욕장 (포항)</h2>
+          <p>
+           여유로운 분위기, 일출 명소 / 최근 SNS 인기 급상승
+          </p>
+          <img
+            src="https://www.namhae.go.kr/tour/_res/tour/img/sub/story/40/s40_img02.jpg"
+            alt="월포해수욕장"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+      <!-- 인포 격포해변 -->
+      <div class="infoPanel" id="info-gyeokpo">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>격포해수욕장 (부안)</h2>
+          <p>
+           단단한 절벽 지형과 해변의 조화 / 석양이 아름다운 서해안의 대표 여행지
+          </p>
+          <img
+            src="https://access.visitkorea.or.kr/bfvk_img/call?cmd=VIEW&id=0669cd1b-e2c6-427b-b714-dd34e9dd93b5&"
+            alt="격포해수욕장"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+            <!-- 인포 검은모래해변 -->
+      <div class="infoPanel" id="info-blacksand">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>여수 만성리 검은모래 해변</h2>
+          <p>
+           특이한 검은모래 해변, 피서+건강까지 / 여수밤바다 & 해양레일바이크 인접
+          </p>
+          <img
+            src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/18/c3/3d/caption.jpg?w=1200&h=-1&s=1"
+            alt="여수만성리검은모래해변"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+                  <!-- 인포 대천해수욕장 -->
+      <div class="infoPanel" id="info-daecheon">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>대천해수욕장 (보령)</h2>
+          <p>
+           서해 최대 규모, 머드축제로도 유명 / 해질 무렵 바다 노을 예쁨
+          </p>
+          <img
+            src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/18/c3/3d/caption.jpg?w=1200&h=-1&s=1"
+            alt="대천해수욕장"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+                        <!-- 인포 꽃지해수욕장 -->
+      <div class="infoPanel" id="info-kkotji">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>꽃지해수욕장 (태안)</h2>
+          <p>
+           할미할아비 바위와 일몰이 유명 / 캠핑, 차박족에게 인기
+          </p>
+          <img
+            src="https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/3efabfde-6a2e-42a4-9ec4-8ef0c6c2b7b3.jpeg"
+            alt="꽃지해수욕장"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+                              <!-- 인포 협재해수욕장 -->
+      <div class="infoPanel" id="info-hyeopjae">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>협재해변</h2>
+          <p>
+           에메랄드빛 바다+하얀 백사장, 제주 해변 대표 / 비양도 배 타고 들어가도 굿
+          </p>
+          <img
+            src="https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/3efabfde-6a2e-42a4-9ec4-8ef0c6c2b7b3.jpeg"
+            alt="협재해변"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+
+      <!-- 가을 -->
+      <div class="pin-group" id="pins-autumn">
+        <div
+          class="clickable"
+          data-target="info-bukhansan"
+          style="left: 43%; top: 200px"
+        >
+          <img src="./1x/maple-leaf.png" alt="">
+        </div>
+
+        <div
+          class="clickable"
+          data-target="info-namhansansung"
+          style="left: 48%; top: 190px"
+        >
+          <img src="./1x/maple-leaf.png" alt="">
+        </div>
+
+      </div>
+
+      <!-- 인포 북한산 국립공원 -->
+      <div class="infoPanel" id="info-bukhansan">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>북한산국립공원</h2>
+          <p>
+           단풍 + 서울 시내 전망 + 등산 조합 / 구기탐방지원센터~비봉 코스 인기
+          </p>
+          <img
+            src="https://korean.visitseoul.net/comm/getImage?srvcId=MEDIA&parentSn=56531&fileTy=MEDIA&fileNo=1"
+            alt="북한산국립공원"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+
+      <!-- 인포 경포해변 -->
+      <div class="infoPanel" id="info-namhansansung">
+        <div class="info-content">
+          <button class="closePanel">
+            <img src="./1x/menu_close.png" alt="닫기" />
+          </button>
+          <h2>남한산성</h2>
+          <p>
+           산성길과 단풍이 어우러져 운치 있음 / 성곽 위 산책하며 조용한 분위기 즐기기 좋아
+          </p>
+          <img
+            src="https://www.100ssd.co.kr/news/photo/201406/27556_20009_2944.jpg"
+            alt="남한산성"
+            style="width: 100%; border-radius: 1rem; margin-top: 1rem"
+          />
+        </div>
+      </div>
+
+
+
+
+
+      </div>
+
+      <!-- 겨울 -->
+      <div class="pin-group" id="pins-winter">
+       
+
+      </div>
+    </div>
+
+    <!-- 계절 섹션 -->
+    <section class="section" id="spring"></section>
+    <section class="section" id="summer"></section>
+    <section class="section" id="autumn"></section>
+    <section class="section" id="winter"></section>
+
+    <button
+      id="topBtn"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      ↑
+    </button>
+    <button id="gomrangyeeBtn">
+      <a href="gomrangyee.html"><img src="./1x/곰랑이.png" alt="" /></a>
+    </button>
+
+    <script>
+      function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      }
+
+      const sections = document.querySelectorAll("section");
+
+      window.addEventListener("scroll", () => {
+        let scrollY = window.scrollY;
+        let windowHeight = window.innerHeight;
+
+        sections.forEach((section, index) => {
+          const sectionTop = section.offsetTop;
+          // 현재 스크롤 위치가 이 섹션 중앙 근처에 오면 active 클래스 추가
+          if (
+            scrollY >= sectionTop - windowHeight / 2 &&
+            scrollY < sectionTop + windowHeight / 2
+          ) {
+            section.classList.add("active");
+          } else {
+            section.classList.remove("active");
+          }
+        });
+      });
+
+      function scrollToSection(index) {
+        sections[index].scrollIntoView({ behavior: "smooth" });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuBtn = document.getElementById("menuToggleBtn");
+        const dropdown = document.querySelector(".dropdown");
+
+        const menuOpenSrc = "./1x/menu_close.png"; // 활성화 시 교체할 이미지 경로
+        const menuDefaultSrc = "./1x/menu_default.png"; // 기본 이미지 경로
+
+        menuBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if (dropdown.style.display === "flex") {
+            dropdown.style.display = "none";
+            menuBtn.querySelector("img").src = menuDefaultSrc;
+          } else {
+            dropdown.style.display = "flex";
+            menuBtn.querySelector("img").src = menuOpenSrc;
+          }
+        });
+
+        // 메뉴 외부 클릭 시 드롭다운 닫고 아이콘 원상복구
+        document.addEventListener("click", (e) => {
+          if (!dropdown.contains(e.target) && e.target !== menuBtn) {
+            dropdown.style.display = "none";
+            menuBtn.querySelector("img").src = menuDefaultSrc;
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const clickableElements = document.querySelectorAll(".clickable");
+        const panels = document.querySelectorAll(".infoPanel");
+
+        // 각 이미지에 클릭 이벤트 연결
+        clickableElements.forEach((el) => {
+          el.addEventListener("click", () => {
+            const targetId = el.getAttribute("data-target");
+            panels.forEach((panel) => panel.classList.remove("open")); // 모두 닫기
+            document.getElementById(targetId)?.classList.add("open"); // 해당 패널 열기
+          });
+        });
+
+        // 닫기 버튼 처리
+        document.querySelectorAll(".closePanel").forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            btn.closest(".infoPanel").classList.remove("open");
+          });
+        });
+
+        // 패널 외부 클릭 시 닫기
+        window.addEventListener("click", (e) => {
+          const isClickInsidePanel = [...panels].some((panel) =>
+            panel.contains(e.target)
+          );
+          const isClickOnButton = e.target.closest(".clickable");
+          if (!isClickInsidePanel && !isClickOnButton) {
+            panels.forEach((panel) => panel.classList.remove("open"));
+          }
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const sections = document.querySelectorAll("section");
+        const pinGroups = {
+          spring: document.getElementById("pins-spring"),
+          summer: document.getElementById("pins-summer"),
+          autumn: document.getElementById("pins-autumn"),
+          winter: document.getElementById("pins-winter"),
+        };
+
+        window.addEventListener("scroll", () => {
+          let currentSeason = "";
+
+          sections.forEach((section) => {
+            const rect = section.getBoundingClientRect();
+            if (
+              rect.top <= window.innerHeight / 2 &&
+              rect.bottom >= window.innerHeight / 2
+            ) {
+              currentSeason = section.id;
+            }
+          });
+
+          Object.keys(pinGroups).forEach((season) => {
+            if (season === currentSeason) {
+              pinGroups[season].classList.add("active");
+            } else {
+              pinGroups[season].classList.remove("active");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

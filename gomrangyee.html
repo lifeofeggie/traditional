@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>전통문화포털 - 곰랑이</title>
+    <style>
+      @import url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Maruburi-Regular.woff2");
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        font-family: "Maruburi-Regular", sans-serif;
+        scroll-behavior: smooth;
+        transition: background 1s ease-in-out;
+      }
+      body {
+        background-color: #fff4ea;
+        color: #333;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        padding: 1rem 5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+      }
+
+      .logo img {
+        width: 100px;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+      }
+
+      nav ul li {
+        position: relative;
+      }
+
+      nav ul li > a {
+        cursor: pointer;
+        text-decoration: none;
+        color: #333;
+        padding: 0.5rem;
+        display: inline-block;
+      }
+
+      /* 드롭다운 메뉴 스타일 */
+nav ul li .dropdown {
+  display: none;
+  position: absolute;
+  top: 3.5rem;
+  right: 0;
+  width: 70vw;
+  background-color: #ffffffee;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-top: 3px solid #fbc8b9;
+  z-index: 99;
+  padding: 2rem 5rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0 0 20px 20px;
+}
+
+nav ul li:hover .dropdown {
+  display: flex;
+}
+
+nav ul li .dropdown {
+  display: none;
+  /* 기존 스타일 유지 */
+}
+
+.dropdown-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  min-width: 120px;
+}
+
+.dropdown-column a {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  text-decoration: none;
+  color: #333;
+  text-align: center;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-column a:hover {
+  background-color: #fbc8b9;
+  color: white;
+  transform: translateY(-2px);
+}
+
+#menuToggleBtn img{
+  width: 40px;
+  height: auto; /* 비율 유지 */
+  cursor: pointer; /* 클릭 가능한 느낌 */}
+
+      .section {
+        height: 100vh;
+        padding: 5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: background 1s ease-in-out;
+        background-color: #fff4ea;
+      }
+
+      .section h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      #topBtn {
+        position: fixed;
+        right: 2rem;
+        bottom: 2rem;
+        background-color: #456856;
+        color: white;
+        padding: 0.8rem 1rem;
+        border-radius: 50%;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+
+      #side-nav {
+        position: fixed;
+        bottom: 2rem; /* 화면 아래에서 띄우기 */
+        left: 50%;
+        transform: translateX(-50%); /* 가로 가운데 정렬 */
+        display: flex;
+        flex-direction: row; /* 가로 정렬 */
+        gap: 1rem; /* 요소 간 간격 */
+        z-index: 100;
+      }
+
+      #side-nav div {
+        border: none;
+        color: #555;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+        background-color: #fff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+        text-align: center;
+      }
+
+      #side-nav div:hover {
+        background-color: #f4d8d8;
+      }
+
+      #gomrangyeeBtn {
+        width: 70px;
+        position: fixed;
+        right: 1.2rem;
+        bottom: 6rem;
+        color: white;
+        padding: 0.8rem 1rem;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        background: none;
+      }
+      #gomrangyeeBtn img {
+        width: 100%;
+        height: 100%;
+      }
+      .gomrangyee_imgs {
+        float: left;
+      }
+      .gomrangyee_imgs img {
+        width: 50px;
+        height: 70px;
+      }
+            .gomrangyee_imgs img:nth-child(2) {
+        width: 50px;
+        height: 50px;
+      }
+                  .gomrangyee_imgs img:nth-child(5) {
+        width: 40px;
+        height: 70px;
+      }
+      p {
+        text-align: center;
+      }
+      
+    </style>
+  </head>
+  <body>
+<nav>
+  <div class="logo">
+    <a href="./웹사이트_레이아웃_메인.html"><img src="./1x/Asset 2.png" alt=""></a>
+  </div>
+  <!-- <ul>
+    <li class="main-menu">
+      <a id="menuToggleBtn"><img src="./1x/menu_default.png" alt=""></a>
+      <div class="dropdown">
+        <div class="dropdown-column">
+          <strong>사이트소개</strong>
+          <a href="greeting.html">인사말</a>
+          <a href="greeting.html#gigwansogae">기관소개</a>
+          <a href="greeting.html#value">핵심가치</a>
+        </div>
+        <div class="dropdown-column">
+          <strong>한문화</strong>
+          <a href="hanCulture.html">한지</a>
+          <a href="hanCulture.html#koreanFood">한식</a>
+          <a href="hanCulture.html#hanbok">한복</a>
+          <a href="hanCulture.html#traditionalPattern">전통문양</a>
+        </div>
+        <div class="dropdown-column">
+          <strong>전통백과</strong>
+              <a href="traditionaldic.html#koreanoldhouse">한국전통옛집</a>
+              <a href="traditionaldic.html#100thsymbol">100대 민족문화상징</a>
+              <a href="traditionaldic.html#culturepeople">한국의 문화인물</a>
+              <a href="traditionaldic.html#nationalICH">국가무형유산</a>
+              <a href="traditionaldic.html#games">전통놀이</a>
+        </div>
+        <div class="dropdown-column">
+          <strong>소식</strong>
+          <a href="#">문화소식</a>
+          <a href="#">행사안내</a>
+          <a href="#">전통기업 톺아보기</a>
+        </div>
+      </div>
+    </li>
+  </ul> -->
+</nav>
+
+    <section class="section">
+      <div class="gomrangyee_imgs">
+        <img src="./1x/곰랑이1.png" alt="" />
+        <img src="./1x/곰랑이2.png" alt="" />
+        <img src="./1x/곰랑이3.png" alt="" />
+        <img src="./1x/곰랑이4.png" alt="" />
+        <img src="./1x/곰랑이5.png" alt="" />
+      </div>
+        <h1>곰랑이</h1>
+      <p>곰랑이는 한국의 단군신화에서 유래한 곰과 호랑이의 상징성을 결합해 탄생한 상상 속 캐릭터입니다.<br><br>
+
+전설 속에서 인간이 되기를 원했던 곰과 호랑이는 신단수 아래에서 수행을 하게 되는데,<br>
+결국 인내심을 잃은 호랑이는 도중에 포기하고, 오직 곰만이 인간이 되어 단군의 어머니가 됩니다.<br><br>
+곰랑이는 이 이야기에서 '곰의 인내'와 '호랑이의 용기'를 동시에 품은 존재로,<br>
+ 신화 속 양 극단의 성질을 조화롭게 지닌 새로운 상징입니다.<br>
+
+둥글고 따뜻한 모습의 곰랑이는 전통과 현대, 상상과 현실의 경계를 넘나들며,<br>
+한국 고유의 정신과 문화를 유쾌하고 친근하게 전달하는 전통문화포털의 마스코트입니다.<br><br>
+
+어린아이부터 어르신까지 모두에게 사랑받을 수 있는 곰랑이는<br>
+ ‘우리 안의 전통’을 다시 바라보게 만드는 귀엽고도 깊은 메시지를 품고 있습니다.</p>
+    </section>
+
+    <button
+      id="topBtn"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+    >
+      ↑
+    </button>
+    <button id="gomrangyeeBtn">
+      <a href="gomrangyee.html"><img src="./1x/곰랑이.png" alt="" /></a>
+    </button>
+
+    <script>
+      function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+      }
+
+      const sections = document.querySelectorAll("section");
+
+      window.addEventListener("scroll", () => {
+        let scrollY = window.scrollY;
+        let windowHeight = window.innerHeight;
+
+        sections.forEach((section, index) => {
+          const sectionTop = section.offsetTop;
+          // 현재 스크롤 위치가 이 섹션 중앙 근처에 오면 active 클래스 추가
+          if (
+            scrollY >= sectionTop - windowHeight / 2 &&
+            scrollY < sectionTop + windowHeight / 2
+          ) {
+            section.classList.add("active");
+          } else {
+            section.classList.remove("active");
+          }
+        });
+      });
+
+      function scrollToSection(index) {
+        sections[index].scrollIntoView({ behavior: "smooth" });
+      }
+
+      // 초기 로드 시 현재 위치에 맞게 활성화
+      window.dispatchEvent(new Event("scroll"));
+    </script>
+  </body>
+</html>
